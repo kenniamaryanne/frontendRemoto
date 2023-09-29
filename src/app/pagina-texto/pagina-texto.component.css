@@ -1,0 +1,43 @@
+@media screen and (max-width: 767px) {
+    .app-bar {
+        background-color: #ff7a00; /* Cor de fundo da barra de aplicativo */
+        color: #fff; /* Cor do texto na barra de aplicativo */
+        padding: 10px; /* Espaçamento interno */
+        text-align: center; /* Centraliza o texto horizontalmente */
+        margin-bottom: 40px;
+         padding: 10px 20px; 
+      }
+      
+      .app-bar h1 {
+        margin: 0; /* Remove margens do título */
+        font-size: 24px; /* Tamanho da fonte do título */
+      }
+
+      .div-central {
+        color: #696969; /* Substitua pela cor desejada, por exemplo, vermelho (#FF0000) */
+      }
+
+      .botao-comecar {
+        font-weight: bold; /* Torna o texto do botão mais gordinho */
+        background-color: #4CAF50; /* Define a cor de fundo verde */
+        color: #fff; /* Define a cor do texto como branco */
+        padding: 10px 20px; /* Adiciona espaçamento interno ao botão */
+        display: block; /* Torna o botão um elemento de bloco */
+        margin: 20px auto 0; /* Adiciona margem na parte superior para empurrar o botão para baixo e centralizá-lo */
+        border: none; /* Remove a borda padrão */
+        border-color: #4CAF50; /* Define a cor da borda como verde */
+      }
+      
+
+      .div-central ul li {
+        margin-bottom: 10px; /* Adiciona espaçamento entre cada <li> */
+      }
+      
+      
+      
+      
+  }
+
+
+
+  

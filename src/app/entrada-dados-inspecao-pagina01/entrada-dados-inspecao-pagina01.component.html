@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+<div class="app-bar">
+  <h1>AutoVistoria</h1>
+</div>
+
+<div class="main-container">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="formGroup">
+      <label for="atividadePrincipal">Atividade Principal:</label>
+      <select id="atividadePrincipal" formControlName="atividadePrincipal"  class="combobox">
+        <option value=""></option> <!-- Opção vazia -->
+        <option value="Agrícola">Agrícola</option>
+        <option value="Obra Civil">Obra Civil</option>
+        <option value="Florestal">Florestal</option>
+        <option value="Indústria/Comercial">Indústria/Comercial</option>
+        <option value="Outros">Outros</option>
+      </select>
+    </div>
+    <div class="formGroup">
+      <label for="tipoEquipamento">Tipo de Equipamento:</label>
+      <input type="text" id="tipoEquipamento" formControlName="tipoEquipamento">
+    </div>
+    <div class="formGroup">
+      <label for="marcaEquipamento">Marca:</label>
+      <input type="text" id="marcaEquipamento" formControlName="marcaEquipamento">
+    </div>
+    <div class="formGroup">
+      <label for="modeloEquipamento">Modelo:</label>
+      <input type="text" id="modeloEquipamento" formControlName="modeloEquipamento">
+    </div>
+    <div class="formGroup">
+      <label for="anoEquipamento">Ano:</label>
+      <input type="text" id="anoEquipamento" formControlName="anoEquipamento">
+    </div>
+    <div class="formGroup">
+      <label for="numeroSerieEquipamento">Número de série:</label>
+      <input type="text" id="numeroSerieEquipamento" formControlName="numeroSerieEquipamento">
+    </div>
+    <div class="formGroup">
+      <label for="motorEquipamento">Motor:</label>
+      <input type="text" id="motorEquipamento" formControlName="motorEquipamento">
+    </div>
+    <div *ngIf="erroValidacao" class="erro-validacao">
+      {{ erroValidacao }}
+    </div>
+    <!-- Adicione outros campos de entrada aqui -->
+    <button class="custom-button" type="button" (click)="onSubmit()">
+      <span class="material-icons">arrow_circle_left</span>
+    </button>
+  </form>
+</div>

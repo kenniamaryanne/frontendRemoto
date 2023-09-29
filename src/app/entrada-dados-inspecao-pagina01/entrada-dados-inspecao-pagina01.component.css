@@ -1,0 +1,86 @@
+.formGroup {
+    margin-bottom: 10px; /* Adicione espaçamento entre os grupos de formulário */
+  }
+
+
+  label {
+    display: block; /* Faz com que as labels ocupem uma linha inteira */
+    margin-bottom: 5px; /* Adicione espaçamento vertical entre as labels e os inputs */
+    color: dimgray;
+  }
+  
+  .erro-validacao {
+    color: red;
+  }
+  
+  .custom-button {
+    background: transparent; /* Remover o fundo */
+    border: none;
+    color: #ff7a00; /* Cor do ícone */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Alinhar o ícone à direita */
+  }
+  
+  .custom-button .material-icons {
+    font-size: 32px; /* Aumentar o tamanho do ícone */
+    transform: scaleX(-1); /* Girar o ícone horizontalmente */
+    margin-right: 5px; /* Espaço entre o ícone e o texto */
+  }
+  
+  
+  .app-bar {
+    background-color: #ff7a00; /* Cor de fundo da barra de aplicativo */
+    color: #fff; /* Cor do texto na barra de aplicativo */
+    padding: 10px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto horizontalmente */
+    
+     padding: 10px 20px; 
+  }
+
+  .app-bar h1 {
+    margin: 0; /* Remove margens do título */
+    font-size: 24px; /* Tamanho da fonte do título */
+  }
+
+  /* Estilos para arredondar campos de entrada */
+input[type="text"] {
+    font-size: 14px;
+    font-family: inherit;
+    padding: 6px 15px;
+    border-radius: 4px;
+    border: 1px #a59898 solid;
+    background: #fdfdfd;
+    outline: none;
+   
+  
+  }
+
+
+
+  .combobox{
+    font-size: 14px;
+    font-family: inherit;
+    padding: 6px 15px;
+    border-radius: 4px;
+    border: 1px #dfdcdc solid;
+    background: #dfdcdc;
+    outline: none;
+
+
+  }
+  
+
+ 
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: start;
+    margin-top: 20px; 
+    justify-content: flex-end;
+  }
+  

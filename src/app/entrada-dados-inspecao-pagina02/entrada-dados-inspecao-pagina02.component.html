@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+<div class="app-bar">
+  <h1>AutoVistoria</h1>
+</div>
+
+<div class="main-container">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="formGroup">
+      <label for="numeroCharci">Número do chassi:</label>
+      <input type="text" id="numeroCharci" formControlName="numeroCharci">
+    </div>
+    <div class="formGroup">
+        <label for="confirmacaoNumeroChassi">N° do chassi ou série do equipamento confere com o informado na proposta de seguro:</label>
+        <select id="confirmacaoNumeroChassi" formControlName="confirmacaoNumeroChassi"  class="combobox">
+          <option value=""></option>
+          <option value="Sim">Sim</option>
+          <option value="Nao">Não</option>
+        </select>
+      </div>
+    <div class="formGroup">
+      <label for="valorEstimado">Valor estimado de mercado do equipamento: </label>
+      <input type="text" id="valorEstimado" formControlName="valorEstimado">
+    </div>
+    <div class="formGroup">
+        <label for="tipo">Tipo: </label>
+        <select id="tipo" formControlName="tipo"  class="combobox">
+          <option value=""></option>
+          <option value="proprio">Próprio</option>
+          <option value="alugado">Alugado</option>
+          <option value="emprestado">Emprestado</option>
+          <option value="arredando">Arrendado</option>
+        </select>
+    </div>
+    <div class="formGroup">
+        <label for="possuiDocumentacao">Proponente possuí documentação que comprove aquisição:  </label>
+        <select id="possuiDocumentacao" formControlName="possuiDocumentacao"  class="combobox">
+          <option value=""></option>
+          <option value="Nota fiscal">Nota fiscal</option>
+          <option value="Recibo">Recibo</option>
+          <option value="DocumentacaoDetran">Documento detran</option>
+          <option value="emplacado">Emplacado</option>
+          <option value="naoTem">Não há</option>
+        </select>
+    </div>
+    <div *ngIf="erroValidacao" class="erro-validacao">
+        {{ erroValidacao }}
+    </div>
+    <button class="custom-button" type="button" (click)="onSubmit()">
+      <span class="material-icons">arrow_circle_left</span>
+    </button>
+  </form>
+</div>
