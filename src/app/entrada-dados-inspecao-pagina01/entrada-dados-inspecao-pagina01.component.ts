@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IndexedDbService } from '../indexed-db.service';
 
 @Component({
   selector: 'app-entrada-dados-inspecao-pagina01',
@@ -16,7 +17,8 @@ export class EntradaDadosInspecaoPagina01Component implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router 
+    private router: Router,
+    private indexedDbService: IndexedDbService 
     ) { }
 
   ngOnInit(): void {
@@ -33,6 +35,15 @@ export class EntradaDadosInspecaoPagina01Component implements OnInit {
 
   onSubmit() {
     if (this.formulario.valid) {
+      // Salvar os dados no banco de dados
+      const formData = {
+        id: new Date().getTime(), // Use um ID único para cada conjunto de dados
+        this: this.formulario.value,
+      };
+  
+      this.indexedDbService.saveFormData(formData);
+
+      // Navegar para a próxima página
       this.router.navigate(['/entrada-dados-inspecao-pagina02']);
     } else {
       this.erroValidacao = 'Preencha todos os campos!';

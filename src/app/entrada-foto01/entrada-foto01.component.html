@@ -9,7 +9,7 @@
 
 <div>
   <h6 class="exemplo">Exemplo:</h6>
-   <div class="custom-box">
+   <div class="custom-image">
     <img src="assets/images/frenteTrator.png" alt="FrenteImagem" width="280" height="250">
    </div>
 </div>
@@ -24,7 +24,22 @@
   </button>
 </div>
 
-<div id="camera-modal"></div>
+<div class="camera-container">
+  <div class="camera-view">
+    <video id="camera-preview" autoplay playsinline></video>
+    <button class="take-photo-button" (click)="takePhoto()" *ngIf="showTakePhotoButton">
+      <span class="material-icons">photo_camera</span>
+    </button>
+  </div>
+  
+</div>
+
+<!-- Adicione a visualização da imagem capturada -->
+<div *ngIf="showCapturedImage" class="captured-image-container">
+  <img [src]="capturedImage" alt="Imagem Capturada">
+  <button class="captured-image-button" (click)="saveImage()">Certo</button>
+  <button class="captured-image-button" (click)="discardImage()">X</button>
+</div>
 
 
 

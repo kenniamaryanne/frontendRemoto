@@ -21,6 +21,7 @@ import { EntradaDados9Component } from './entrada-foto09/entrada-dados9.componen
 import { EntradaDados10Component } from './entrada-foto10/entrada-dados10.component';
 import { EntradaDados11Component } from './entrada-foto11/entrada-dados11.component';
 import { EntradaDados12Component } from './entrada-foto12/entrada-dados12.component';
+import { IndexedDbService } from './indexed-db.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { EntradaDados12Component } from './entrada-foto12/entrada-dados12.compon
     AppRoutingModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [IndexedDbService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
