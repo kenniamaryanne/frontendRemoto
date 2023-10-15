@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IndexedDbService } from '../indexed-db.service';
 
 
 @Component({
@@ -14,12 +15,20 @@ export class PaginaTextoComponent implements OnInit {
   codigoInspecao: string = '';
 
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private indexedDbService: IndexedDbService,private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.nomeCliente = params['nome'];
       this.codigoInspecao = params['codigo']; 
+      
     });
   }
+
+  async saveInspecao() {
+
+    await this.indexedDbService.saveInspecaoData(this.nomeCliente, this.codigoInspecao);
+
+  }
+
 }

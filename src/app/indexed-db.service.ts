@@ -10,12 +10,14 @@ export class IndexedDbService {
   constructor() {
     this.initDB();
   }
-
+  
+  
   private async initDB() {
     this.db = await openDB('formularioEfotos', 1, {
       upgrade(db) {
         db.createObjectStore('dados', { keyPath: 'id' });
         db.createObjectStore('fotos', { keyPath: 'id' });
+        db.createObjectStore('inspecao', { keyPath: 'id' });
       },
     });
   }
@@ -25,6 +27,23 @@ export class IndexedDbService {
     const store = tx.objectStore('dados');
     await store.put(data);
   }
+
+  async saveInspecaoData(nome: string, codigoInspecao: string) {
+    console.log('teste');
+
+    const tx = this.db.transaction('inspecao', 'readwrite');
+    console.log('teste02');
+    const store = tx.objectStore('inspecao');
+
+    const id = new Date().getTime().toString(); 
+
+    const inspecaoData = { id, nome, codigoInspecao };
+
+    console.log(inspecaoData);
+
+    await store.put(inspecaoData);
+  }
+  
 
   async loadFormData() {
     const tx = this.db.transaction('dados', 'readonly');
@@ -44,9 +63,9 @@ export class IndexedDbService {
 // indexed-db.service.ts
 
 
-async loadAllPhotosWithInfo() {
+  async loadAllPhotosWithInfo() {
 
-}
+  }
 
 
 }
