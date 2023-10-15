@@ -3,43 +3,30 @@
 <div class="app-bar">
     <h1>AutoVistoria</h1>
 </div>
-<div class="placa-fazenda">
-    <h2 class="nomePlaca">PLACA DA FAZENDA</h2>
+<div >
+    <h2 >PLACA DA FAZENDA</h2>
 </div>
 
 <div>
   <h6 class="exemplo">Exemplo:</h6>
    <div class="custom-image">
-    <img src="assets/images/frenteTrator.png" alt="FrenteImagem" width="280" height="250">
+    <img src="assets/images/placafazenda.jpg" alt="FrenteImagem" width="280" height="250">
    </div>
 </div>
 
 
 <div>
   <h6 class="observacao">Observação:</h6>    
-  <input class="editObservacao">
+  <input class="editObservacao" [(ngModel)]="editObservacao">
 
-  <button class="custom-camera" type="button" (click)="openCamera()">
+  <button class="custom-camera" type="button" (click)="Capture()">
     <span class="material-icons">photo_camera</span>
   </button>
 </div>
 
-<div class="camera-container">
-  <div class="camera-view">
-    <video id="camera-preview" autoplay playsinline></video>
-    <button class="take-photo-button" (click)="takePhoto()" *ngIf="showTakePhotoButton">
-      <span class="material-icons">photo_camera</span>
-    </button>
-  </div>
-  
-</div>
+<app-camera-capture [observacaoFoto]="editObservacao" [nomeFoto]="'placafazenda'" [caminhoProximo] = "'/entrada-foto02'" *ngIf="showCameraCapture"></app-camera-capture>
 
-<!-- Adicione a visualização da imagem capturada -->
-<div *ngIf="showCapturedImage" class="captured-image-container">
-  <img [src]="capturedImage" alt="Imagem Capturada">
-  <button class="captured-image-button" (click)="saveImage()">Certo</button>
-  <button class="captured-image-button" (click)="discardImage()">X</button>
-</div>
+
 
 
 

@@ -11,12 +11,15 @@ import { ActivatedRoute } from '@angular/router';
 
 export class PaginaTextoComponent implements OnInit {
   nomeCliente: string = '';
+  codigoInspecao: string = '';
+
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.nomeCliente = params['nome'];
+      this.codigoInspecao = params['codigo']; 
     });
   }
 }

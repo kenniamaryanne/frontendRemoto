@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-entrada-foto03',
-  templateUrl: './entrada-foto03.component.html',
+  selector: 'app-entrada-Foto10',
+  templateUrl: './entrada-foto10.component.html',
   styleUrls: ['../../styles/telafoto-styles.css']
 })
-export class EntradaFoto03Component {
+export class EntradaFoto10Component {
   showCameraCapture: boolean = false;
   editObservacao: string = '';
   nomeFoto: string = '';

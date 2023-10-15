@@ -1,0 +1,13 @@
+<div class="camera-container">
+    <div class="camera-view">
+      <video id="camera-preview" autoplay playsinline></video>
+      <button class="take-photo-button" (click)="takePhoto()">Tirar Foto</button>
+    </div>
+  </div>
+  
+  <div *ngIf="showCapturedImage" class="captured-image-container">
+    <img [src]="capturedImage" alt="Imagem Capturada">
+    <button class="captured-image-button" (click)="saveImage()">Certo</button>
+    <button class="captured-image-button" (click)="cancelCapture()">Cancelar</button>
+  </div>
+ 

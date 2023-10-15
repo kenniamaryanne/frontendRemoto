@@ -1,0 +1,104 @@
+.app-bar {
+    background-color: #ff7a00; /* Cor de fundo da barra de aplicativo */
+    color: #fff; /* Cor do texto na barra de aplicativo */
+    padding: 10px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto horizontalmente */
+    margin-bottom: 40px;
+     padding: 10px 20px; 
+  }
+  
+  .app-bar h1 {
+    margin: 0; /* Remove margens do título */
+    font-size: 24px; /* Tamanho da fonte do título */
+  }
+  
+  .nomeTipoFoto{
+  
+        position: absolute;
+        width: 320px;
+        height: 39.35px;
+        left: 20px;
+        top: 52px;
+  
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 23px;
+        line-height: 50px;
+  
+        color: #000000;
+  }
+  
+  .exemplo{
+    position: absolute;
+  
+    left: 21px;
+    top: 100px;
+  
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+  
+    color: #000000;
+  }
+  
+  .editObservacao{
+    position: absolute;
+    left: 21px;
+    width: 270px;
+    height: 70px;
+    margin-top: 400px;
+  }
+  
+  .observacao{
+    position: absolute;
+  
+    left: 21px;
+    top: 420px;
+  
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+  
+    color: #000000;
+  }
+  
+  .custom-image{
+    box-sizing: border-box;
+    position: absolute;
+    left: 20px;
+    top: 190px;
+    border: 1px solid #000000;
+  }
+  
+  .custom-camera {
+    background-color: #000;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px; /* Espaço entre o campo de edição e o botão */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); /* Sombra leve */
+    position: absolute; /* Adicione essa linha */
+    top: 600px; /* Ajuste a posição vertical conforme necessário */
+    left: 110px; /* Ajuste a posição horizontal conforme necessário */
+  }
+  
+  .custom-camera .material-icons {
+  color: #fff;
+  }
+
+  
+  
+  
+  
+  
+  
+  
