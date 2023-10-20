@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { deleteDB } from 'idb';
 
 @Component({
   selector: 'app-enviar-dados',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class EnviarDadosComponent {
   enviarInspecao() {
-    // Coloque aqui o código que você deseja executar quando o botão for clicado
+    deleteDB('formularioEfotos');
     console.log('Inspeção enviada!');
   }
 }

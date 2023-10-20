@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
@@ -25,6 +25,7 @@ import { CameraCaptureComponent } from './camera-capture/camera-capture.componen
 import { EntradaFotodocumentoComponent } from './entrada-fotodocumento/entrada-fotodocumento.component';
 import { EntradaFoto11Component } from './entrada-foto11/entrada-foto11.component';
 import { EnviarDadosComponent } from './enviar-dados/enviar-dados.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -53,7 +54,13 @@ import { EnviarDadosComponent } from './enviar-dados/enviar-dados.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [IndexedDbService],
   bootstrap: [AppComponent]

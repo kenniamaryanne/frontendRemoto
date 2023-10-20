@@ -67,14 +67,14 @@ export class CameraCaptureComponent  implements OnInit{
   }
 
   async saveImage() {
-    const position = await this.getLocation();
+   // const position = await this.getLocation();
 
-    if (position) {
+    //if (position) {
       const photoInfo = {
         name: this.nomeFoto,
         date: new Date().toISOString(),
-        latitude: position.latitude.toString(),
-        longitude: position.longitude.toString(),
+        latitude: '1212',//position.latitude.toString(),
+        longitude:'2121',// position.longitude.toString(),
         observacao: this.observacaoFoto 
       };
 
@@ -98,9 +98,9 @@ export class CameraCaptureComponent  implements OnInit{
       }
     
 
-    } else {
-      console.error('Não foi possível obter a localização do dispositivo.');
-    }
+   // } else {
+   //   console.error('Não foi possível obter a localização do dispositivo.');
+   // }
 
     // Limpe a imagem capturada e oculte a visualização
     // Fecha a câmera antes de navegar para a próxima página
@@ -127,7 +127,7 @@ export class CameraCaptureComponent  implements OnInit{
     }
   }
 
-  getLocation(): Promise<GeolocationCoordinates | null> {
+  /*getLocation(): Promise<GeolocationCoordinates | null> {
     return new Promise((resolve, reject) => {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(
@@ -138,5 +138,5 @@ export class CameraCaptureComponent  implements OnInit{
         resolve(null); // Navegador não suporta geolocalização
       }
     });
-  }
+  }*/
 }
