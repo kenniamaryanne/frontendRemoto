@@ -1,6 +1,8 @@
 import { Component,Input, OnInit } from '@angular/core';
 import { IndexedDbService } from '../indexed-db.service';
 import { Router } from '@angular/router';
+import { LocationService } from '../location.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-camera-capture',
@@ -11,13 +13,14 @@ export class CameraCaptureComponent  implements OnInit{
   @Input()observacaoFoto!: string;
   @Input()nomeFoto!: string;
   @Input()caminhoProximo!: string;
-  constructor(private indexedDbService: IndexedDbService, private router: Router) {}
+  constructor(private indexedDbService: IndexedDbService, private router: Router,private locationService:LocationService) {}
   
   private mediaStream: MediaStream | null = null;
   public showTakePhotoButton: boolean = false;
   public capturedImage: string | null = null;
   public showCapturedImage: boolean = false;
-
+  public latitude1: string = ''; // Propriedade para a latitude
+  public longitude1: string = '';
 
   ngOnInit() {
     this.openCamera(); // Chama o método openCamera() quando o componente é inicializado.
@@ -64,20 +67,24 @@ export class CameraCaptureComponent  implements OnInit{
 
     this.capturedImage = canvas.toDataURL('image/jpeg');
     this.showCapturedImage = true;
+    
   }
 
   async saveImage() {
-   // const position = await this.getLocation();
+    const position = await this.locationService.getLocation();
 
-    //if (position) {
+    if (position) {
       const photoInfo = {
         name: this.nomeFoto,
         date: new Date().toISOString(),
-        latitude: '1212',//position.latitude.toString(),
-        longitude:'2121',// position.longitude.toString(),
+        latitude: position.latitude.toString(),
+        longitude: position.longitude.toString(),
         observacao: this.observacaoFoto 
       };
 
+      this.latitude1 = position.latitude.toString();
+      this.longitude1 = position.longitude.toString();
+      
       if (this.capturedImage){
 
         const byteCharacters = atob(this.capturedImage.split(',')[1]);
@@ -98,15 +105,15 @@ export class CameraCaptureComponent  implements OnInit{
       }
     
 
-   // } else {
-   //   console.error('Não foi possível obter a localização do dispositivo.');
-   // }
+    } else {
+      console.error('Não foi possível obter a localização do dispositivo.');
+    }
 
     // Limpe a imagem capturada e oculte a visualização
     // Fecha a câmera antes de navegar para a próxima página
     // Navegue para a próxima página com base na rota específica
-    this.closeCamera();
-    this.router.navigate([this.caminhoProximo]);
+    //this.closeCamera();
+    //this.router.navigate([this.caminhoProximo]);
   }
 
   cancelCapture() {
@@ -127,16 +134,4 @@ export class CameraCaptureComponent  implements OnInit{
     }
   }
 
-  /*getLocation(): Promise<GeolocationCoordinates | null> {
-    return new Promise((resolve, reject) => {
-      if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => resolve(position.coords),
-          (error) => reject(error)
-        );
-      } else {
-        resolve(null); // Navegador não suporta geolocalização
-      }
-    });
-  }*/
 }

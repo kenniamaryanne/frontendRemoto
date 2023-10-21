@@ -1,5 +1,8 @@
 <div class="camera-container">
     <div class="camera-view">
+      <input class="editObservacao" [value]="latitude1" placeholder="Latitude">
+      <input class="editObservacao" [value]="longitude1" placeholder="Longitude">
+
       <video id="camera-preview" autoplay playsinline></video>
       <button class="take-photo-button" (click)="takePhoto()">Tirar Foto</button>
     </div>

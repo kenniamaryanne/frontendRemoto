@@ -28,6 +28,7 @@ import { EnviarDadosComponent } from './enviar-dados/enviar-dados.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

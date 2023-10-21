@@ -11,11 +11,19 @@ export class LocationService {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(
           (position) => resolve(position.coords),
-          (error) => reject(error)
+          (error) => reject(error),
+          {
+            enableHighAccuracy: true, 
+          }
         );
       } else {
-        resolve(null); // Navegador não suporta geolocalização
+        resolve(null); 
       }
     });
   }
+  
 }
+
+
+
+
