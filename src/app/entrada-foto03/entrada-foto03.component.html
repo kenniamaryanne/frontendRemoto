@@ -3,7 +3,7 @@
 <div class="app-bar">
     <h1>AutoVistoria</h1>
 </div>
-<div>
+<div class="nomeFoto">
     <h2>LADO ESQUERDO</h2>
 </div>
 
@@ -17,7 +17,7 @@
 
 <div>
   <h6 class="observacao">Observação:</h6>    
-  <input class="editObservacao" [(ngModel)]="editObservacao">
+  <textarea class="editObservacao" [(ngModel)]="editObservacao"></textarea>
 
   <button class="custom-camera" type="button" (click)="Capture()">
     <span class="material-icons">photo_camera</span>

@@ -19,40 +19,44 @@ export class CameraCaptureComponent  implements OnInit{
   public showTakePhotoButton: boolean = false;
   public capturedImage: string | null = null;
   public showCapturedImage: boolean = false;
-  public latitude1: string = ''; // Propriedade para a latitude
-  public longitude1: string = '';
+  cameraIsOpen: boolean = false;
 
   ngOnInit() {
-    this.openCamera(); // Chama o método openCamera() quando o componente é inicializado.
+    this.openCamera()
+      .then(() => {
+        this.cameraIsOpen = true;
+      })
+      .catch((error) => {
+        console.error("Erro ao abrir a câmera:", error);
+      });
   }
+  
 
-  openCamera() {
+  openCamera(): Promise<void> {
     const constraints: MediaStreamConstraints = {
       video: { facingMode: 'user' }
     };
-
-    
-
-    navigator.mediaDevices
-      .getUserMedia(constraints)
-      .then((stream) => {
-        this.showTakePhotoButton = true;
-        this.mediaStream = stream;
-
-        const videoElement = document.getElementById(
-          'camera-preview'
-        ) as HTMLVideoElement;
-
-        videoElement.srcObject = stream;
-      })
-      .catch((error) => {
-        if (error.name === 'NotAllowedError') {
-          console.error('Permissão para acessar a câmera negada pelo usuário');
-        } else {
-          console.error('Erro ao acessar a câmera:', error);
-        }
-      });
+  
+    return new Promise((resolve, reject) => {
+      navigator.mediaDevices.getUserMedia(constraints)
+        .then((stream) => {
+          // Inicialize o elemento de vídeo aqui, se necessário
+          const videoElement = document.getElementById('camera-preview') as HTMLVideoElement;
+          if (videoElement) {
+            videoElement.srcObject = stream;
+            videoElement.onloadedmetadata = () => {
+              resolve(); // Resolva a Promise quando a câmera estiver pronta
+            };
+          } else {
+            reject("Elemento de vídeo não encontrado");
+          }
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   }
+  
 
   takePhoto()   {  
     const videoElement = document.getElementById(
@@ -82,8 +86,7 @@ export class CameraCaptureComponent  implements OnInit{
         observacao: this.observacaoFoto 
       };
 
-      this.latitude1 = position.latitude.toString();
-      this.longitude1 = position.longitude.toString();
+
       
       if (this.capturedImage){
 
@@ -112,8 +115,8 @@ export class CameraCaptureComponent  implements OnInit{
     // Limpe a imagem capturada e oculte a visualização
     // Fecha a câmera antes de navegar para a próxima página
     // Navegue para a próxima página com base na rota específica
-    //this.closeCamera();
-    //this.router.navigate([this.caminhoProximo]);
+    this.closeCamera();
+    this.router.navigate([this.caminhoProximo]);
   }
 
   cancelCapture() {

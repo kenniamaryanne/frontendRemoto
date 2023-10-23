@@ -11,6 +11,7 @@ export class EntradaFotodocumentoComponent {
   nomeFoto: string = '';
   caminhoProximo: string = '';
 
+  
   Capture() {
     this.showCameraCapture = true;
   }
