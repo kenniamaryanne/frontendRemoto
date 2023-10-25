@@ -16,6 +16,7 @@ export class LocationService {
             enableHighAccuracy: true, 
           }
         );
+        
       } else {
         resolve(null); 
       }

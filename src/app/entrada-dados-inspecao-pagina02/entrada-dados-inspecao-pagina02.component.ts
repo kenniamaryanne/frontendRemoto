@@ -9,7 +9,6 @@ import { IndexedDbService } from '../indexed-db.service';
   styleUrls: ['./entrada-dados-inspecao-pagina02.component.css']
 })
 
-
 export class EntradaDadosInspecaoPagina02Component implements OnInit {
   formulario!: FormGroup;
   erroValidacao: string = ''; 

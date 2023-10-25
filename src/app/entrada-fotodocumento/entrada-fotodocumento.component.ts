@@ -15,4 +15,5 @@ export class EntradaFotodocumentoComponent {
   Capture() {
     this.showCameraCapture = true;
   }
+  
 }

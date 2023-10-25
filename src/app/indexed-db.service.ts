@@ -11,7 +11,6 @@ export class IndexedDbService {
     this.initDB();
   }
   
-  
   private async initDB() {
     this.db = await openDB('formularioEfotos', 1, {
       upgrade(db) {

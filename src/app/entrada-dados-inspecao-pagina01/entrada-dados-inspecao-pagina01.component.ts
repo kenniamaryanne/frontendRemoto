@@ -14,7 +14,6 @@ export class EntradaDadosInspecaoPagina01Component implements OnInit {
   erroValidacao: string = ''; 
 
 
-
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,

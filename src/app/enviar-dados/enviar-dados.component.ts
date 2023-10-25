@@ -6,6 +6,7 @@ import { deleteDB } from 'idb';
   templateUrl: './enviar-dados.component.html',
   styleUrls: ['./enviar-dados.component.css']
 })
+
 export class EnviarDadosComponent {
   enviarInspecao() {
     deleteDB('formularioEfotos');

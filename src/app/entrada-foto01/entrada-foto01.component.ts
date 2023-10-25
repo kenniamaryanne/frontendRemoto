@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['../../styles/telafoto-styles.css']
 })
 
-
 export class EntradaFoto01Component  {
   showCameraCapture: boolean = false;
   editObservacao: string = '';
