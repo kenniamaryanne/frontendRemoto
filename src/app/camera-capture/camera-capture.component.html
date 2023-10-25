@@ -4,11 +4,14 @@
     <button class="take-photo-button" (click)="takePhoto()" *ngIf="cameraIsOpen">Tirar Foto</button>
   </div>
   
-  </div>
+</div>
   
-  <div *ngIf="showCapturedImage" class="captured-image-container">
-    <img [src]="capturedImage" alt="Imagem Capturada">
-    <button class="captured-image-button" (click)="saveImage()">Certo</button>
-    <button class="captured-image-button" (click)="cancelCapture()">Cancelar</button>
-  </div>
- 
+<div *ngIf="showCapturedImage" class="captured-image-container">
+  <img [src]="capturedImage" alt="Imagem Capturada">
+  <button class="captured-image-button" (click)="saveImage()">Certo</button>
+  <button class="captured-image-button" (click)="cancelCapture()">Cancelar</button>
+</div>
+
+<div class="captured-image-container">
+  <img [src]="capturedImage" *ngIf="showCapturedImage">
+</div>
