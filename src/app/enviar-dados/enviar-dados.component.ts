@@ -9,7 +9,13 @@ import { deleteDB } from 'idb';
 
 export class EnviarDadosComponent {
   enviarInspecao() {
-    deleteDB('formularioEfotos');
-    console.log('Inspeção enviada!');
+    if (navigator.onLine) {
+      // O navegador está online, pode executar a ação
+      deleteDB('formularioEfotos');
+      console.log('Inspeção enviada!');
+    } else {
+      // O navegador está offline, trate esse caso
+      console.log('Você está offline. A inspeção não pode ser enviada no momento.');
+    }
   }
 }

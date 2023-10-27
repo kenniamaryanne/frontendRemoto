@@ -1,13 +1,73 @@
 .camera-view {
-    position: relative;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  }
-  
-  
-  .captured-image-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2; /* Um valor maior do que o z-index do elemento da câmera */
-  }
-  
+.captured-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Igual à largura da visualização da câmera */
+  height: auto; /* Igual à altura da visualização da câmera */
+  z-index: 2; /* Um valor maior do que o z-index do elemento da câmera */
+}
+
+.camera-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+
+.take-photo-button {
+  position: absolute;
+  bottom: 30px;
+  right: 50%; /* Centralize o botão horizontalmente. */
+  transform: translateX(50%); /* Centralize o botão horizontalmente. */
+  background-color: transparent; /* Remova a cor de fundo. */
+  border: none;
+  color: #ff7a00;
+  cursor: pointer; /* Transforme o cursor em uma mãozinha para indicar que é clicável. */
+}
+
+.take-photo-button .material-icons {
+  font-size: 40px; /* Tamanho do ícone. Ajuste conforme necessário. */
+}
+
+.image-container {
+  position: relative;
+}
+
+
+.captured-image-icon-success {
+  position: absolute;
+  bottom: 30px; /* Ajuste a posição vertical conforme necessário */
+  left: 70px; /* Ajuste a posição horizontal conforme necessário */
+  color: green; /* Define a cor para o ícone de "Certo" */
+  cursor: pointer; /* Mude o cursor ao pairar para indicar um link clicável */
+  background-color: transparent;
+  border: none;
+}
+
+.captured-image-icon-cancel {
+  position: absolute;
+  bottom: 30px; /* Ajuste a posição vertical conforme necessário */
+  left: 200px; /* Ajuste a posição horizontal conforme necessário */
+  color: red; /* Define a cor para o ícone de "Cancelar" */
+  cursor: pointer; /* Mude o cursor ao pairar para indicar um link clicável */
+  background-color: transparent;
+  border: none;
+}
+
+.captured-image-icon-cancel .material-icons {
+  font-size: 40px; /* Tamanho do ícone. Ajuste conforme necessário. */
+}
+
+.captured-image-icon-success .material-icons {
+  font-size: 40px; /* Tamanho do ícone. Ajuste conforme necessário. */
+}
+

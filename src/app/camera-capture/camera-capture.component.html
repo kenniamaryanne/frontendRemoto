@@ -1,18 +1,25 @@
+
 <div class="camera-container">
   <div class="camera-view">
-    <video id="camera-preview" autoplay playsinline ></video>
-    <button class="take-photo-button" (click)="takePhoto()" *ngIf="cameraIsOpen">Tirar Foto</button>
+    <video id="camera-preview" autoplay playsinline></video>
   </div>
-  
-  
-</div>
-  
-<div *ngIf="showCapturedImage" class="captured-image-container">
-  <img [src]="capturedImage" alt="Imagem Capturada">
-  <button class="captured-image-button" (click)="saveImage()">Certo</button>
-  <button class="captured-image-button" (click)="cancelCapture()">Cancelar</button>
+  <button class="take-photo-button" (click)="takePhoto()" *ngIf="cameraIsOpen">
+    <i class="material-icons">camera</i> 
+  </button>
 </div>
 
-<div class="captured-image-container">
-  <img [src]="capturedImage" *ngIf="showCapturedImage">
+  
+<div *ngIf="showCapturedImage" class="captured-image-container">
+  <div class="image-container">
+    <img [src]="capturedImage" alt="Imagem Capturada"> 
+  
+    <button class="material-icons captured-image-icon-success" (click)="saveImage()">
+      <i class="material-icons">check_circle</i> 
+    </button>
+
+    <button class="material-icons captured-image-icon-cancel" (click)="cancelCapture()">
+      <i class="material-icons">cancel</i> 
+    </button>
+
+  </div>
 </div>

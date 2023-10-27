@@ -34,7 +34,11 @@ export class CameraCaptureComponent  implements OnInit{
 
   openCamera(): Promise<void> {
     const constraints: MediaStreamConstraints = {
-      video: { facingMode: 'user' }
+      video: {
+
+        facingMode: 'user'
+      
+      }
     };
   
     return new Promise((resolve, reject) => {
@@ -75,6 +79,8 @@ export class CameraCaptureComponent  implements OnInit{
   }
 
   async saveImage() {
+  
+
     const position = await this.locationService.getLocation();
 
     if (position) {

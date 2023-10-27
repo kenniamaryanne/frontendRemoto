@@ -26,7 +26,7 @@ export class PaginaTextoComponent implements OnInit {
       this.codigoInspecao = params['codigo']; 
       
     });
-    
+  
   }
 
   async saveInspecao() {
