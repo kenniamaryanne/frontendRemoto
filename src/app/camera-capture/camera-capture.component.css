@@ -1,26 +1,23 @@
-.camera-view {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .captured-image-container {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* Igual à largura da visualização da câmera */
-  height: auto; /* Igual à altura da visualização da câmera */
+
   z-index: 2; /* Um valor maior do que o z-index do elemento da câmera */
 }
 
 .camera-container {
   position: relative;
+  max-width: 100%;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  object-fit: cover;
+
 }
+
+
 
 
 .take-photo-button {
@@ -30,7 +27,7 @@
   transform: translateX(50%); /* Centralize o botão horizontalmente. */
   background-color: transparent; /* Remova a cor de fundo. */
   border: none;
-  color: #ff7a00;
+  color: #000000;
   cursor: pointer; /* Transforme o cursor em uma mãozinha para indicar que é clicável. */
 }
 
@@ -47,7 +44,7 @@
   position: absolute;
   bottom: 30px; /* Ajuste a posição vertical conforme necessário */
   left: 70px; /* Ajuste a posição horizontal conforme necessário */
-  color: green; /* Define a cor para o ícone de "Certo" */
+  color: rgb(10, 117, 54); /* Define a cor para o ícone de "Certo" */
   cursor: pointer; /* Mude o cursor ao pairar para indicar um link clicável */
   background-color: transparent;
   border: none;
@@ -57,7 +54,7 @@
   position: absolute;
   bottom: 30px; /* Ajuste a posição vertical conforme necessário */
   left: 200px; /* Ajuste a posição horizontal conforme necessário */
-  color: red; /* Define a cor para o ícone de "Cancelar" */
+  color: rgb(156, 11, 11); /* Define a cor para o ícone de "Cancelar" */
   cursor: pointer; /* Mude o cursor ao pairar para indicar um link clicável */
   background-color: transparent;
   border: none;
