@@ -26,6 +26,8 @@ import { EntradaFotodocumentoComponent } from './entrada-fotodocumento/entrada-f
 import { EntradaFoto11Component } from './entrada-foto11/entrada-foto11.component';
 import { EnviarDadosComponent } from './enviar-dados/enviar-dados.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -61,7 +63,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    HttpClientModule,
   ],
   providers: [IndexedDbService],
   bootstrap: [AppComponent]

@@ -44,11 +44,30 @@ export class IndexedDbService {
   }
   
 
-  async loadFormData() {
+  async loadFormDados() {
     const tx = this.db.transaction('dados', 'readonly');
     const store = tx.objectStore('dados');
+    
     return store.getAll();
   }
+
+  async loadFormCodigoInspecao() {
+    const tx = this.db.transaction('inspecao', 'readonly');
+    const store = tx.objectStore('inspecao');
+
+    // Use o método openCursor para obter o primeiro registro
+    const cursor = await store.openCursor();
+
+    // Verifique se há um cursor e obtenha o valor do campo 'codigoInspecao'
+    if (cursor) {
+        const codigoInspecao = cursor.value.codigoInspecao;
+        return codigoInspecao;
+    }
+
+    // Retorna null ou algum valor padrão se não houver registros
+    return null;
+}
+
 
   async savePhoto(photoData: Blob, photoInfo: { name: string, date: string, latitude: string, longitude: string }) {
     const tx = this.db.transaction('fotos', 'readwrite');
@@ -59,7 +78,6 @@ export class IndexedDbService {
   }
   
 
-// indexed-db.service.ts
 
 
   async loadAllPhotosWithInfo() {
