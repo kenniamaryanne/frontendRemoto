@@ -21,30 +21,39 @@ export class IndexedDbService {
     });
   }
 
+  private async getDatabase() {
+    if (!this.db) {
+      await this.initDB();
+    }
+    return this.db;
+  }
+
   async saveFormData(data: any) {
+    const db = await this.getDatabase();
     const tx = this.db.transaction('dados', 'readwrite');
     const store = tx.objectStore('dados');
     await store.put(data);
   }
 
   async saveInspecaoData(nome: string, codigoInspecao: string) {
-    console.log('teste');
+    const db = await this.getDatabase(); 
 
     const tx = this.db.transaction('inspecao', 'readwrite');
-    console.log('teste02');
+
     const store = tx.objectStore('inspecao');
 
     const id = new Date().getTime().toString(); 
 
     const inspecaoData = { id, nome, codigoInspecao };
 
-    console.log(inspecaoData);
+   
 
     await store.put(inspecaoData);
   }
   
 
   async loadFormDados() {
+    const db = await this.getDatabase();
     const tx = this.db.transaction('dados', 'readonly');
     const store = tx.objectStore('dados');
     
@@ -52,6 +61,7 @@ export class IndexedDbService {
   }
 
   async loadFormCodigoInspecao() {
+    const db = await this.getDatabase();
     const tx = this.db.transaction('inspecao', 'readonly');
     const store = tx.objectStore('inspecao');
 
@@ -66,10 +76,31 @@ export class IndexedDbService {
 
     // Retorna null ou algum valor padrão se não houver registros
     return null;
-}
+  }
+
+  async loadFormNomeVistoriador() {
+    const db = await this.getDatabase();
+    const tx = this.db.transaction('inspecao', 'readonly');
+    const store = tx.objectStore('inspecao');
+
+    // Use o método openCursor para obter o primeiro registro
+    const cursor = await store.openCursor();
+
+    // Verifique se há um cursor e obtenha o valor do campo 'codigoInspecao'
+    if (cursor) {
+        const nomeInspetor = cursor.value.nome;
+        return nomeInspetor;
+    }
+
+    // Retorna null ou algum valor padrão se não houver registros
+    return null;
+  }
 
 
-  async savePhoto(photoData: Blob, photoInfo: { name: string, date: string, latitude: string, longitude: string }) {
+
+
+  async savePhoto(photoData: Blob, photoInfo: { descricao: string, data: string, latitude: string, longitude: string }) {
+    const db = await this.getDatabase();
     const tx = this.db.transaction('fotos', 'readwrite');
     const store = tx.objectStore('fotos');
     const id = new Date().getTime().toString(); // Use um ID único para cada foto
@@ -80,8 +111,15 @@ export class IndexedDbService {
 
 
 
-  async loadAllPhotosWithInfo() {
+  async getFotosFromIndexedDB(): Promise<any[]> {
 
+    const db = await this.getDatabase();
+    const transaction = this.db.transaction('fotos', 'readonly');
+    const store = transaction.objectStore('fotos');
+
+    console.log(store.getAll());
+
+    return store.getAll();
   }
 
 

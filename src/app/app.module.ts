@@ -31,6 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +52,7 @@ import { HttpClientModule } from '@angular/common/http';
     CameraCaptureComponent,
     EntradaFotodocumentoComponent,
     EntradaFoto11Component,
-    EnviarDadosComponent,
+    EnviarDadosComponent
 
   ],
   imports: [

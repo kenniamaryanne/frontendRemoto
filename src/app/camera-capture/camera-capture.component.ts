@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LocationService } from '../location.service';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
   selector: 'app-camera-capture',
   templateUrl: './camera-capture.component.html',
@@ -81,14 +82,15 @@ export class CameraCaptureComponent  implements OnInit{
   async saveImage() {
   
 
-    const position = await this.locationService.getLocation();
+   // const position = await this.locationService.getLocation();
+ 
 
-    if (position) {
+   // if (position) {
       const photoInfo = {
-        name: this.nomeFoto,
-        date: new Date().toISOString(),
-        latitude: position.latitude.toString(),
-        longitude: position.longitude.toString(),
+        descricao: this.nomeFoto,
+        data: new Date().toISOString().split('T')[0],
+        latitude: "hjhj", //position.latitude.toString(),
+        longitude: "ghg",//position.longitude.toString(),
         observacao: this.observacaoFoto 
       };
 
@@ -114,9 +116,9 @@ export class CameraCaptureComponent  implements OnInit{
       }
     
 
-    } else {
-      console.error('Não foi possível obter a localização do dispositivo.');
-    }
+   // } else {
+   //   console.error('Não foi possível obter a localização do dispositivo.');
+   // }
 
     // Limpe a imagem capturada e oculte a visualização
     // Fecha a câmera antes de navegar para a próxima página

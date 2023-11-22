@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
 import { Router } from '@angular/router';
 import { IndexedDbService } from '../indexed-db.service';
+import { PosicaoPaginaService } from '../posicao-pagina.service'
 
 @Component({
   selector: 'app-entrada-dados-inspecao-pagina02',
@@ -16,10 +17,11 @@ export class EntradaDadosInspecaoPagina02Component implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private indexedDbService: IndexedDbService  
+    private indexedDbService: IndexedDbService,
+    private posicaoService: PosicaoPaginaService 
     ) { }
 
-  ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
     this.formulario = this.formBuilder.group({
       numeroCharci: ['', Validators.required],
       confirmacaoNumeroChassi: ['', Validators.required],
@@ -27,6 +29,20 @@ export class EntradaDadosInspecaoPagina02Component implements OnInit {
       tipo: ['', Validators.required],
       possuiDocumentacao: ['', Validators.required],
     });
+
+
+    const nome =  await this.indexedDbService.loadFormNomeVistoriador();
+    const codigo = await this.indexedDbService.loadFormCodigoInspecao();
+    const identificador = `${nome}-${codigo}`;
+
+    // Salvar o estado ao sair da página
+    console.log(this.router.url);
+    this.posicaoService.salvarEstado(identificador, { url: this.router.url, /* outros dados de estado */ });
+  }
+
+  async ngOnDestroy(): Promise<void> {
+
+    
   }
 
   onSubmit() {
