@@ -40,10 +40,7 @@ export class EntradaDadosInspecaoPagina02Component implements OnInit {
     this.posicaoService.salvarEstado(identificador, { url: this.router.url, /* outros dados de estado */ });
   }
 
-  async ngOnDestroy(): Promise<void> {
-
-    
-  }
+  async ngOnDestroy(): Promise<void> {}
 
   onSubmit() {
     if (this.formulario.valid) {

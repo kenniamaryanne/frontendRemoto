@@ -71,7 +71,7 @@ export class EnviarDadosComponent {
 
 
 async enviarFormulario(dados: any[]) {
-  const apiUrl = 'http://ultron:8092/api/pergunta/salvar';
+  const apiUrl = 'https://6ec0-177-159-60-161.ngrok-free.app/api/pergunta/salvar';
 
   
   try {
@@ -119,7 +119,7 @@ enviarArquivo(blob: Blob, descricao: string, latitude: string, longitude: string
   formData.append('data', data);
 
 
-  this.http.post('http://ultron:8095/inspecoes/processar', formData)
+  this.http.post('https://96bf-177-159-60-161.ngrok-free.app/inspecoes/processar', formData)
     .subscribe(
       (resposta) => {
         console.log('Resposta da API:', resposta);
