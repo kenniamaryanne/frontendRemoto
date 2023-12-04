@@ -57,13 +57,14 @@ export class EnviarDadosComponent {
 
 
   async verificarConexao(): Promise<boolean> {
-    try {
+  //  try {
      
-      await this.http.get('http://ultron:8092/api/pergunta/buscar/8141655', { observe: 'response' }).toPromise(); //add https://www.google.com
-      return true; 
-    } catch (error) {
-      return false; 
-    }
+    //  await this.http.get('http://ultron:8092/api/pergunta/buscar/8141655', { observe: 'response' }).toPromise(); //add https://www.google.com
+    ///  return true; 
+   // } catch (error) {
+   //   return false; 
+   // }
+   return true;
   }
 
 
@@ -71,7 +72,7 @@ export class EnviarDadosComponent {
 
 
 async enviarFormulario(dados: any[]) {
-  const apiUrl = 'https://6ec0-177-159-60-161.ngrok-free.app/api/pergunta/salvar';
+  const apiUrl = 'https://f5f1-177-159-60-161.ngrok-free.app/api/pergunta/salvar';
 
   
   try {
@@ -119,7 +120,7 @@ enviarArquivo(blob: Blob, descricao: string, latitude: string, longitude: string
   formData.append('data', data);
 
 
-  this.http.post('https://96bf-177-159-60-161.ngrok-free.app/inspecoes/processar', formData)
+  this.http.post(' https://8eff-177-159-60-161.ngrok-free.app/inspecoes/processar', formData)
     .subscribe(
       (resposta) => {
         console.log('Resposta da API:', resposta);
