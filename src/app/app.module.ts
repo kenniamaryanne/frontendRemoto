@@ -26,7 +26,8 @@ import { EntradaFotodocumentoComponent } from './entrada-fotodocumento/entrada-f
 import { EntradaFoto11Component } from './entrada-foto11/entrada-foto11.component';
 import { EnviarDadosComponent } from './enviar-dados/enviar-dados.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { NgrokInterceptor } from './config/ngrok.interceptor';
 
 
 
@@ -68,7 +69,10 @@ import { HttpClientModule } from '@angular/common/http';
     }),
     HttpClientModule,
   ],
-  providers: [IndexedDbService],
+  providers: [IndexedDbService,
+    { provide: HTTP_INTERCEPTORS, useClass: NgrokInterceptor, multi: true }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
