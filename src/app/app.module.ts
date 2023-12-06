@@ -28,7 +28,8 @@ import { EnviarDadosComponent } from './enviar-dados/enviar-dados.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgrokInterceptor } from './config/ngrok.interceptor';
-
+import { ConnectionServiceModule } from 'ng-connection-service';
+import { ConnectionCheckService } from './connection-check.service';
 
 
 
@@ -67,10 +68,11 @@ import { NgrokInterceptor } from './config/ngrok.interceptor';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [IndexedDbService,
-    { provide: HTTP_INTERCEPTORS, useClass: NgrokInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: NgrokInterceptor, multi: true },
+    ConnectionCheckService
 
   ],
   bootstrap: [AppComponent]

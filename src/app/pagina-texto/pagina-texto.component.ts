@@ -82,13 +82,13 @@ export class PaginaTextoComponent implements OnInit {
   }
 
   async verificarConexao(): Promise<boolean> {
-    try {
+   // try {
      
-      await this.http.get('http://ultron:8092/api/pergunta/buscar/8141655', { observe: 'response' }).toPromise(); //add https://www.google.com
+    //  await this.http.get('https://dantasbikes.com.br/', { observe: 'response' }).toPromise(); //add https://www.google.com
       return true; 
-    } catch (error) {
-      return false; 
-    }
+   // } catch (error) {
+    //  return false; 
+   //}
   }
 
 
