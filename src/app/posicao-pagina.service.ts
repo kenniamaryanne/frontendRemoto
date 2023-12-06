@@ -11,6 +11,8 @@ export class PosicaoPaginaService {
   private estados: { [key: string]: any } = {};
 
   salvarEstado(identificador: string, valor: any): void {
+    console.log(identificador);
+
     this.estados[identificador] = valor;
     localStorage.setItem(identificador, JSON.stringify(valor));
   }

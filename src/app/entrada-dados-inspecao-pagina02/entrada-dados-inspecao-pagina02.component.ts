@@ -36,6 +36,7 @@ export class EntradaDadosInspecaoPagina02Component implements OnInit {
     const identificador = `${nome}-${codigo}`;
 
     // Salvar o estado ao sair da página
+    console.log('Identificador: '+identificador);
     console.log(this.router.url);
     this.posicaoService.salvarEstado(identificador, { url: this.router.url, /* outros dados de estado */ });
   }

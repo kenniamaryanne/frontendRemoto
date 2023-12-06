@@ -29,7 +29,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgrokInterceptor } from './config/ngrok.interceptor';
 import { ConnectionServiceModule } from 'ng-connection-service';
-import { ConnectionCheckService } from './connection-check.service';
+
 
 
 
@@ -71,8 +71,7 @@ import { ConnectionCheckService } from './connection-check.service';
     HttpClientModule
   ],
   providers: [IndexedDbService,
-    { provide: HTTP_INTERCEPTORS, useClass: NgrokInterceptor, multi: true },
-    ConnectionCheckService
+    { provide: HTTP_INTERCEPTORS, useClass: NgrokInterceptor, multi: true }
 
   ],
   bootstrap: [AppComponent]
