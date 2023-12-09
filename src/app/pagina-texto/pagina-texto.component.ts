@@ -6,6 +6,8 @@ import { ExibirMensagemService } from '../exibir-mensagem.service';
 import { PosicaoPaginaService } from '../posicao-pagina.service'
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { deleteDB } from 'idb';
+
 
 
 @Component({
@@ -63,6 +65,9 @@ export class PaginaTextoComponent implements OnInit {
   async saveInspecao() {
 
     if (await this.verificarConexao()) {
+
+      localStorage.clear();
+      deleteDB('formularioEfotos');
 
       await this.indexedDbService.saveInspecaoData(this.nomeCliente, this.codigoInspecao);
 

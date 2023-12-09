@@ -44,6 +44,7 @@ export class EnviarDadosComponent {
    
   
       deleteDB('formularioEfotos');
+      localStorage.clear();
   
       
     } else {
@@ -126,7 +127,6 @@ enviarArquivo(blob: Blob, descricao: string, latitude: string, longitude: string
       }
     );
 
-  
 }
 
 
