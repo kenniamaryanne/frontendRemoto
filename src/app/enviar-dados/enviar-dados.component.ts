@@ -72,7 +72,7 @@ export class EnviarDadosComponent {
 
 
 async enviarFormulario(dados: any[]) {
-  const apiUrl = 'https://f5f1-177-159-60-161.ngrok-free.app/api/pergunta/salvar';
+  const apiUrl = ' https://14f6-138-36-100-145.ngrok-free.app/api/pergunta/salvar';
 
   try {
     const resposta = await this.http.post(apiUrl, dados).toPromise();
@@ -116,7 +116,7 @@ enviarArquivo(blob: Blob, descricao: string, latitude: string, longitude: string
   formData.append('data', data);
 
 
-  this.http.post(' https://8eff-177-159-60-161.ngrok-free.app/inspecoes/processar', formData)
+  this.http.post('https://b377-138-36-100-145.ngrok-free.app /inspecoes/processar', formData)
     .subscribe(
       (resposta) => {
         console.log('Resposta da API:', resposta);
