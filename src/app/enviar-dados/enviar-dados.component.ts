@@ -42,6 +42,8 @@ export class EnviarDadosComponent {
   
       this.enviarFormulario(dados);
    
+
+      console.log("entrou?")
   
       deleteDB('formularioEfotos');
       localStorage.clear();
@@ -58,13 +60,13 @@ export class EnviarDadosComponent {
 
 
   async verificarConexao(): Promise<boolean> {
-  //  try {
+    try {
      
-   //   await this.http.get('https://8eff-177-159-60-161.ngrok-free.app/api/pergunta/buscar/8141655', { observe: 'response' }).toPromise(); //add https://www.google.com
+      await this.http.get('https://14f6-138-36-100-145.ngrok-free.app/api/pergunta/buscar/132', { observe: 'response' }).toPromise(); //add https://www.google.com
      return true; 
-   // } catch (error) {
-    // return false; 
-   // }
+    } catch (error) {
+     return false; 
+    }
 
   }
 

@@ -67,7 +67,6 @@ export class PaginaTextoComponent implements OnInit {
     if (await this.verificarConexao()) {
 
       localStorage.clear();
-      deleteDB('formularioEfotos');
 
       await this.indexedDbService.saveInspecaoData(this.nomeCliente, this.codigoInspecao);
 

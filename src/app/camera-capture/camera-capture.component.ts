@@ -89,8 +89,8 @@ export class CameraCaptureComponent  implements OnInit{
       const photoInfo = {
         descricao: this.nomeFoto,
         data: new Date().toISOString().split('T')[0],
-        latitude: position.latitude.toString(),
-        longitude: position.longitude.toString(),
+        latitude: "k",//position.latitude.toString(),
+        longitude: "k",//position.longitude.toString(),
         observacao: this.observacaoFoto 
       };
 
