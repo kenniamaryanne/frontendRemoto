@@ -3,6 +3,7 @@ import { IndexedDbService } from '../indexed-db.service';
 import { Router } from '@angular/router';
 import { LocationService } from '../location.service';
 import { ToastrService } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class CameraCaptureComponent  implements OnInit{
     const constraints: MediaStreamConstraints = {
       video: {
 
-        facingMode: 'user'
+        facingMode: 'environment'
       
       }
     };
@@ -86,9 +87,20 @@ export class CameraCaptureComponent  implements OnInit{
  
 
     if (position) {
+
+      const agora = new Date();
+      const hora = agora.getHours();
+      const minutos = agora.getMinutes();
+      const segundos = agora.getSeconds()
+
+      
+      const horaFormatada = `${hora}:${minutos}:${segundos}`;
+
+      
+
       const photoInfo = {
         descricao: this.nomeFoto,
-        data: new Date().toISOString().split('T')[0],
+        data: new Date().toISOString().split('T')[0] + ' '+horaFormatada,
         latitude: "k",//position.latitude.toString(),
         longitude: "k",//position.longitude.toString(),
         observacao: this.observacaoFoto 

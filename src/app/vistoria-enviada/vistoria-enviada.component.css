@@ -1,0 +1,29 @@
+.app-bar {
+    background-color: #ff7a00; /* Cor de fundo da barra de aplicativo */
+    color: #fff; /* Cor do texto na barra de aplicativo */
+    padding: 10px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto horizontalmente */
+    margin-bottom: 40px;
+     padding: 10px 20px; 
+  }
+  
+  .app-bar h1 {
+    margin: 0; /* Remove margens do título */
+    font-size: 24px; /* Tamanho da fonte do título */
+  }
+  
+  .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .green-button {
+      background-color: rgb(245, 127, 48);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+    

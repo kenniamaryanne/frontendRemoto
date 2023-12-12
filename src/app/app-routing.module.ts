@@ -16,6 +16,7 @@ import { EntradaFoto10Component } from './entrada-foto10/entrada-foto10.componen
 import { EntradaFoto11Component } from './entrada-foto11/entrada-foto11.component';
 import { EntradaFotodocumentoComponent } from './entrada-fotodocumento/entrada-fotodocumento.component';
 import { EnviarDadosComponent } from './enviar-dados/enviar-dados.component';
+import { VistoriaEnviadaComponent } from './vistoria-enviada/vistoria-enviada.component';
 
 const routes: Routes = [
   { path: 'pagina-texto/:nome/:codigo', component: PaginaTextoComponent },
@@ -33,7 +34,8 @@ const routes: Routes = [
   { path: 'entrada-foto10', component: EntradaFoto10Component }, 
   { path: 'entrada-foto11', component: EntradaFoto11Component }, 
   { path: 'entrada-fotodocumento', component: EntradaFotodocumentoComponent }, 
-  { path: 'enviar-dados', component: EnviarDadosComponent },       
+  { path: 'enviar-dados', component: EnviarDadosComponent },  
+  { path: 'vistoria-enviada', component: VistoriaEnviadaComponent},     
 ];
 
 @NgModule({

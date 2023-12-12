@@ -41,12 +41,11 @@ export class EnviarDadosComponent {
       this.enviarfotosEinformacoesAPI();
   
       this.enviarFormulario(dados);
-   
-
-      console.log("entrou?")
   
       deleteDB('formularioEfotos');
       localStorage.clear();
+
+      this.router.navigate(['/vistoria-enviada']);
   
       
     } else {
@@ -168,10 +167,6 @@ async transformarFormulariosParaJSON() {
 async  getCodigoInspecaoFromIndexedDB() {
   
 }
-
-
-  
-
 
 
 }

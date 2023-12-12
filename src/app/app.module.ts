@@ -29,6 +29,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgrokInterceptor } from './config/ngrok.interceptor';
 import { ConnectionServiceModule } from 'ng-connection-service';
+import { VistoriaEnviadaComponent } from './vistoria-enviada/vistoria-enviada.component';
 
 
 
@@ -54,7 +55,8 @@ import { ConnectionServiceModule } from 'ng-connection-service';
     CameraCaptureComponent,
     EntradaFotodocumentoComponent,
     EntradaFoto11Component,
-    EnviarDadosComponent
+    EnviarDadosComponent,
+    VistoriaEnviadaComponent
 
   ],
   imports: [
