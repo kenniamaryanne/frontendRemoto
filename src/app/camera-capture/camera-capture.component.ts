@@ -101,8 +101,8 @@ export class CameraCaptureComponent  implements OnInit{
       const photoInfo = {
         descricao: this.nomeFoto,
         data: new Date().toISOString().split('T')[0] + ' '+horaFormatada,
-        latitude: "k",//position.latitude.toString(),
-        longitude: "k",//position.longitude.toString(),
+        latitude: position.latitude.toString(),
+        longitude: position.longitude.toString(),
         observacao: this.observacaoFoto 
       };
 
@@ -132,17 +132,12 @@ export class CameraCaptureComponent  implements OnInit{
       console.error('Não foi possível obter a localização do dispositivo.');
     }
 
-    // Limpe a imagem capturada e oculte a visualização
-    // Fecha a câmera antes de navegar para a próxima página
-    // Navegue para a próxima página com base na rota específica
     this.closeCamera();
     this.router.navigate([this.caminhoProximo]);
   }
 
   cancelCapture() {
-    // Implemente a ação de cancelar a captura, se necessário
-
-    // Resetar o estado da captura
+   
     this.capturedImage = null;
     this.showCapturedImage = false;
     this.closeCamera();
