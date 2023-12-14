@@ -46,15 +46,10 @@ export class EnviarDadosComponent {
       localStorage.clear();
 
       this.router.navigate(['/vistoria-enviada']);
-  
       
     } else {
       this.exibirMensagemService.exibirModalSemInternet();
-
-     
-    }
-
-   
+    }   
   }
 
 

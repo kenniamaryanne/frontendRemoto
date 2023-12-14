@@ -83,10 +83,10 @@ export class CameraCaptureComponent  implements OnInit{
   async saveImage() {
   
 
-    const position = await this.locationService.getLocation();
+   // const position = await this.locationService.getLocation();
  
 
-    if (position) {
+    //if (position) {
 
       const agora = new Date();
       const hora = agora.getHours();
@@ -101,8 +101,8 @@ export class CameraCaptureComponent  implements OnInit{
       const photoInfo = {
         descricao: this.nomeFoto,
         data: new Date().toISOString().split('T')[0] + ' '+horaFormatada,
-        latitude: position.latitude.toString(),
-        longitude: position.longitude.toString(),
+        latitude: '',//position.latitude.toString(),
+        longitude:'', //position.longitude.toString(),
         observacao: this.observacaoFoto 
       };
 
@@ -128,9 +128,9 @@ export class CameraCaptureComponent  implements OnInit{
       }
     
 
-    } else {
-      console.error('Não foi possível obter a localização do dispositivo.');
-    }
+   // } else {
+    //  console.error('Não foi possível obter a localização do dispositivo.');
+   // }
 
     this.closeCamera();
     this.router.navigate([this.caminhoProximo]);
