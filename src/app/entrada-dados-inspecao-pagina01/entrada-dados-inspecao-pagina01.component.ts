@@ -46,12 +46,15 @@ export class EntradaDadosInspecaoPagina01Component implements OnInit {
 
 
 
-  onSubmit() {
+  async onSubmit() {
     if (this.formulario.valid) {
+      const codigo = await this.indexedDbService.loadFormCodigoInspecao();
+
       // Salvar os dados no banco de dados
       const formData = {
         id: new Date().getTime(), // Use um ID único para cada conjunto de dados
         this: this.formulario.value,
+        codigoVistoria: codigo,
       };
   
       this.indexedDbService.saveFormData(formData);

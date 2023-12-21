@@ -70,29 +70,25 @@ export class PaginaTextoComponent implements OnInit {
 
       await this.indexedDbService.saveInspecaoData(this.nomeCliente, this.codigoInspecao);
 
- 
-
       this.router.navigate(['/entrada-dados-inspecao-pagina01']);
 
-    } else{
+   } else {
 
       this.exibirMensagemService.exibirModalSemInternet();
 
     }
 
-    
-     
-
   }
 
   async verificarConexao(): Promise<boolean> {
-   // try {
+  // try {
      
-    //  await this.http.get('https://dantasbikes.com.br/', { observe: 'response' }).toPromise(); //add https://www.google.com
+    //  await this.http.get('https://14f6-138-36-100-145.ngrok-free.app/api/pergunta/buscar/132', { observe: 'response' }).toPromise(); //add https://www.google.com
       return true; 
-   // } catch (error) {
-    //  return false; 
-   //}
+
+  //  } catch (error) {
+   //   return false; 
+   // }
   }
 
 

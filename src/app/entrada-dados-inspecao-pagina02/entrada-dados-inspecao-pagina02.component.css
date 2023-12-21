@@ -50,8 +50,7 @@
   }
 
   .custom-button .material-icons {
-    font-size: 32px; /* Aumentar o tamanho do ícone */
-    transform: scaleX(-1); /* Girar o ícone horizontalmente */
+    font-size: 48px; /* Aumentar o tamanho do ícone */
     margin-right: 5px; /* Espaço entre o ícone e o texto */
   }
   

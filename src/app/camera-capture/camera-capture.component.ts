@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LocationService } from '../location.service';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
+import { LoadingService } from '../loading.service';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class CameraCaptureComponent  implements OnInit{
   @Input()observacaoFoto!: string;
   @Input()nomeFoto!: string;
   @Input()caminhoProximo!: string;
-  constructor(private indexedDbService: IndexedDbService, private router: Router,private locationService:LocationService) {}
+  constructor(private indexedDbService: IndexedDbService, private router: Router,
+    private locationService:LocationService,private loadingService: LoadingService) {}
   
   private mediaStream: MediaStream | null = null;
   public showTakePhotoButton: boolean = false;
@@ -33,6 +35,14 @@ export class CameraCaptureComponent  implements OnInit{
       });
   }
   
+  startLoading() {
+    console.log("oi carregamento");
+    this.loadingService.show();
+  }
+  
+  stopLoading() {
+    this.loadingService.hide();
+  }
 
   openCamera(): Promise<void> {
     const constraints: MediaStreamConstraints = {
@@ -81,12 +91,12 @@ export class CameraCaptureComponent  implements OnInit{
   }
 
   async saveImage() {
-  
+    this.startLoading()
 
-    const position = await this.locationService.getLocation();
+   // const position = await this.locationService.getLocation();
  
 
-    if (position) {
+   // if (position) {
 
       const agora = new Date();
       const hora = agora.getHours();
@@ -96,14 +106,15 @@ export class CameraCaptureComponent  implements OnInit{
       
       const horaFormatada = `${hora}:${minutos}:${segundos}`;
 
-      
+      const codigo = await this.indexedDbService.loadFormCodigoInspecao();
 
       const photoInfo = {
         descricao: this.nomeFoto,
         data: new Date().toISOString().split('T')[0] + ' '+horaFormatada,
         latitude: '',//position.latitude.toString(),
         longitude:'', //position.longitude.toString(),
-        observacao: this.observacaoFoto 
+        observacao: this.observacaoFoto,
+        vistoria: codigo
       };
 
 
@@ -128,10 +139,11 @@ export class CameraCaptureComponent  implements OnInit{
       }
     
 
-    } else {
-      console.error('Não foi possível obter a localização do dispositivo.');
-    }
+  //  } else {
+  //    console.error('Não foi possível obter a localização do dispositivo.');
+  //  }
 
+    this.stopLoading()
     this.closeCamera();
     this.router.navigate([this.caminhoProximo]);
   }

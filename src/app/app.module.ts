@@ -30,6 +30,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgrokInterceptor } from './config/ngrok.interceptor';
 import { ConnectionServiceModule } from 'ng-connection-service';
 import { VistoriaEnviadaComponent } from './vistoria-enviada/vistoria-enviada.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+
 
 
 
@@ -56,7 +58,8 @@ import { VistoriaEnviadaComponent } from './vistoria-enviada/vistoria-enviada.co
     EntradaFotodocumentoComponent,
     EntradaFoto11Component,
     EnviarDadosComponent,
-    VistoriaEnviadaComponent
+    VistoriaEnviadaComponent,
+    LoadingSpinnerComponent
 
   ],
   imports: [

@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { ExibirMensagemService } from '../exibir-mensagem.service';
 import { PosicaoPaginaService } from '../posicao-pagina.service'
 import { Router } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
 
 
 @Component({
@@ -17,7 +19,8 @@ import { Router } from '@angular/router';
 
 export class EnviarDadosComponent {
   constructor(private indexedDbService: IndexedDbService,private http: HttpClient,
-  private exibirMensagemService: ExibirMensagemService,private posicaoService: PosicaoPaginaService,private router: Router){}
+  private exibirMensagemService: ExibirMensagemService,private posicaoService: PosicaoPaginaService,
+  private router: Router,private sw: ServiceWorkerModule){}
 
 
   async ngOnInit(): Promise<void> {
@@ -44,6 +47,7 @@ export class EnviarDadosComponent {
   
       deleteDB('formularioEfotos');
       localStorage.clear();
+      this.clearCache();
 
       this.router.navigate(['/vistoria-enviada']);
       
@@ -52,21 +56,23 @@ export class EnviarDadosComponent {
     }   
   }
 
+  clearCache() {
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({ command: 'clearCache' });
+    }
+  }
+  
 
   async verificarConexao(): Promise<boolean> {
-    try {
+    //try {
      
-      await this.http.get('https://14f6-138-36-100-145.ngrok-free.app/api/pergunta/buscar/132', { observe: 'response' }).toPromise(); //add https://www.google.com
+   //   await this.http.get('https://14f6-138-36-100-145.ngrok-free.app/api/pergunta/buscar/132', { observe: 'response' }).toPromise(); //add https://www.google.com
      return true; 
-    } catch (error) {
-     return false; 
-    }
+   // } catch (error) {
+   //  return false; 
+   // }
 
   }
-
-
-
-
 
 async enviarFormulario(dados: any[]) {
   const apiUrl = 'https://14f6-138-36-100-145.ngrok-free.app/api/pergunta/salvar';
@@ -80,15 +86,17 @@ async enviarFormulario(dados: any[]) {
 
 }
 
-
 async enviarfotosEinformacoesAPI() {
   try {
     const fotos = await this.indexedDbService.getFotosFromIndexedDB();
     const codigoInspecao = await this.indexedDbService.loadFormCodigoInspecao();
 
     for (const foto of fotos) {
-     
-      this.enviarArquivo(foto.photoData,foto.descricao,foto.latitude,foto.longitude,foto.observacao,'AV',codigoInspecao,foto.data);
+       
+      if (codigoInspecao == foto.inspecao){
+
+        this.enviarArquivo(foto.photoData,foto.descricao,foto.latitude,foto.longitude,foto.observacao,'AV',codigoInspecao,foto.data);
+      }
       
     }
   } catch (error) {
@@ -133,15 +141,27 @@ async transformarFormulariosParaJSON() {
 
     if (dados && dados.length > 0) {
       const dadosFormatados = dados.map(dado => {
-        const chavesThis = Object.keys(dado.this);
 
-        return chavesThis.map(pergunta => {
-          return {
-            pergunta: pergunta,
-            resposta: dado.this[pergunta],
-            vistoria: codigoInspecao
-          };
-        });
+        if (dado.codigoInspecao == codigoInspecao) {
+
+          const chavesThis = Object.keys(dado.this);
+
+          return chavesThis.map(pergunta => {
+            return {
+              pergunta: pergunta,
+              resposta: dado.this[pergunta],
+              vistoria: codigoInspecao
+            };
+          });
+
+
+
+        } else {
+
+          return [];
+
+        }
+
       });
 
       const resultadoFinal = dadosFormatados.flat();

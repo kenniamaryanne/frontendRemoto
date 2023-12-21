@@ -3,7 +3,7 @@
   <video id="camera-preview" autoplay playsinline></video>
 
   <button class="take-photo-button" (click)="takePhoto()" *ngIf="cameraIsOpen">
-    <i class="material-icons">camera</i> 
+    <img class="material-icons" src="assets/icons/cameraRedonda.svg" alt="Descrição do ícone camera">
   </button>
   
 </div>
@@ -14,11 +14,11 @@
     <img [src]="capturedImage" alt="Imagem Capturada"> 
   
     <button class="material-icons captured-image-icon-success" (click)="saveImage()">
-      <i class="material-icons">check_circle</i> 
+      <img class="material-icons" src="assets/icons/iconOkay.svg" alt="Descrição do ícone">
     </button>
 
     <button class="material-icons captured-image-icon-cancel" (click)="cancelCapture()">
-      <i class="material-icons">cancel</i> 
+      <img class="material-icons" src="assets/icons/iconClose.svg" alt="Descrição do ícone fechar">
     </button>
 
   </div>

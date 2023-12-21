@@ -43,11 +43,14 @@ export class EntradaDadosInspecaoPagina02Component implements OnInit {
 
   async ngOnDestroy(): Promise<void> {}
 
-  onSubmit() {
+  async onSubmit() {
     if (this.formulario.valid) {
+      const codigo = await this.indexedDbService.loadFormCodigoInspecao();
+
       const formData = {
         id: new Date().getTime(), // Use um ID único para cada conjunto de dados
         this: this.formulario.value,
+        codigoVistoria: codigo,
       };
       this.indexedDbService.saveFormData(formData);
 

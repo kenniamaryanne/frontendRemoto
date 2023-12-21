@@ -99,7 +99,9 @@ export class IndexedDbService {
 
 
 
-  async savePhoto(photoData: Blob, photoInfo: { descricao: string, data: string, latitude: string, longitude: string }) {
+  async savePhoto(photoData: Blob, photoInfo: { descricao: string, data: string, latitude: string, longitude: string, vistoria: number }) {
+    
+    console.log(photoData);
     const db = await this.getDatabase();
     const tx = this.db.transaction('fotos', 'readwrite');
     const store = tx.objectStore('fotos');
@@ -108,9 +110,6 @@ export class IndexedDbService {
     await store.put(photoObject);
   }
   
-
-
-
   async getFotosFromIndexedDB(): Promise<any[]> {
 
     const db = await this.getDatabase();
@@ -120,7 +119,7 @@ export class IndexedDbService {
     console.log(store.getAll());
 
     return store.getAll();
-  }
 
+  }
 
 }
