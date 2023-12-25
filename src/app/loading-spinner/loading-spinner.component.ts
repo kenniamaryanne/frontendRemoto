@@ -8,14 +8,13 @@ import { LoadingService } from '../loading.service';
   styleUrls: ['./loading-spinner.component.css']
 })
 export class LoadingSpinnerComponent implements OnInit, OnDestroy {
-
   isLoading = false;
   private loadingSubscription!: Subscription;
 
   constructor(private loadingService: LoadingService) { }
 
   ngOnInit(): void {
-    this.loadingSubscription = this.loadingService.getLoadingState().subscribe((isLoading) => {
+    this.loadingSubscription = this.loadingService.isLoading$.subscribe(isLoading => {
       this.isLoading = isLoading;
     });
   }
@@ -23,5 +22,4 @@ export class LoadingSpinnerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.loadingSubscription.unsubscribe();
   }
-
 }

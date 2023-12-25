@@ -22,8 +22,6 @@ export class EntradaFoto01Component  {
     this.showCameraCapture = true;
   }
 
-
-
   async ngOnInit(): Promise<void> {
 
     const nome =  await this.indexedDbService.loadFormNomeVistoriador();

@@ -35,14 +35,6 @@ export class CameraCaptureComponent  implements OnInit{
       });
   }
   
-  startLoading() {
-    console.log("oi carregamento");
-    this.loadingService.show();
-  }
-  
-  stopLoading() {
-    this.loadingService.hide();
-  }
 
   openCamera(): Promise<void> {
     const constraints: MediaStreamConstraints = {
@@ -91,7 +83,7 @@ export class CameraCaptureComponent  implements OnInit{
   }
 
   async saveImage() {
-    this.startLoading()
+  
 
    // const position = await this.locationService.getLocation();
  
@@ -143,7 +135,7 @@ export class CameraCaptureComponent  implements OnInit{
   //    console.error('Não foi possível obter a localização do dispositivo.');
   //  }
 
-    this.stopLoading()
+
     this.closeCamera();
     this.router.navigate([this.caminhoProximo]);
   }
