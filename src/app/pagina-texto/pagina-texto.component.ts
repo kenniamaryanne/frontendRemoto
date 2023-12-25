@@ -88,7 +88,7 @@ export class PaginaTextoComponent implements OnInit {
 
     } catch (error) {
 
-      return false; 
+        return false; 
 
     }
   }
