@@ -64,16 +64,19 @@ export class PaginaTextoComponent implements OnInit {
 
   async saveInspecao() {
 
+    console.log("teste01");
+
     if (await this.verificarConexao()) {
-
+      console.log("teste0662");
       localStorage.clear();
-
+      console.log("teste04");
       await this.indexedDbService.saveInspecaoData(this.nomeCliente, this.codigoInspecao);
-
+      console.log("teste05");
       this.router.navigate(['/entrada-dados-inspecao-pagina01']);
+      console.log("teste06");
 
    } else {
-
+    console.log("teste03");
       this.exibirMensagemService.exibirModalSemInternet();
 
     }
@@ -81,16 +84,16 @@ export class PaginaTextoComponent implements OnInit {
   }
 
   async verificarConexao(): Promise<boolean> {
-   try {
+ //  try {
      
-      await this.http.get('https://14f6-138-36-100-145.ngrok-free.app/api/pergunta/buscar/12', { observe: 'response' }).toPromise(); //add https://www.google.com
+    //  await this.http.get('https://14f6-138-36-100-145.ngrok-free.app/api/pergunta/buscar/12', { observe: 'response' }).toPromise(); 
       return true; 
 
-    } catch (error) {
+   // } catch (error) {
 
-        return false; 
+   //     return false; 
 
-    }
+   // }
   }
 
 

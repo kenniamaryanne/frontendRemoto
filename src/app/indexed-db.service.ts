@@ -116,8 +116,6 @@ export class IndexedDbService {
     const transaction = this.db.transaction('fotos', 'readonly');
     const store = transaction.objectStore('fotos');
 
-    console.log(store.getAll());
-
     return store.getAll();
 
   }

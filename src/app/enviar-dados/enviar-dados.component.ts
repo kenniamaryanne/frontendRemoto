@@ -6,6 +6,7 @@ import { ExibirMensagemService } from '../exibir-mensagem.service';
 import { PosicaoPaginaService } from '../posicao-pagina.service'
 import { Router } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { Observable } from 'rxjs/internal/Observable';
 
 
 
@@ -35,25 +36,55 @@ export class EnviarDadosComponent {
   }
 
 
+
   async  enviarInspecao() {
 
-    if (await this.verificarConexao()) {
+   // if (await this.verificarConexao()) {
   
-      const dados = await this.transformarFormulariosParaJSON();
+      //const dados = await this.transformarFormulariosParaJSON();
      
-      this.enviarfotosEinformacoesAPI();
-  
-      this.enviarFormulario(dados);
-  
-      deleteDB('formularioEfotos');
-      localStorage.clear();
-      this.clearCache();
+      console.log('oi enviarvida202444parte33?');
 
-      this.router.navigate(['/vistoria-enviada']);
+
+      const respostas = [
+        {
+          pergunta: 'Quais bens foram afetados?',
+          resposta: 'teste01',
+          vistoria: 6556,
+        },
+        {
+          pergunta: 'Medidas adotadas após o ocorrido:',
+          resposta: 'teste02',
+          vistoria: 5545,
+        },
+      ];
+
+
+
+      this.enviarRespostas(respostas).subscribe(
+        (response) => {
+          console.log('Perguntas e respostas enviadas com sucesso!', response);
+         
+        },
+        (error) => {
+          console.error('Erro ao enviar perguntas e respostas:', error);
+         
+        }
+      );
+
+      // this.enviarfotosEinformacoesAPI();
+  
+     // await this.enviarFormulario(dados);
+  
+    //  deleteDB('formularioEfotos');
+     // localStorage.clear();
+      //this.clearCache();
+
+      //this.router.navigate(['/vistoria-enviada']);
       
-    } else {
-      this.exibirMensagemService.exibirModalSemInternet();
-    }   
+  //  } else {
+  //    this.exibirMensagemService.exibirModalSemInternet();
+  //  }   
   }
 
   clearCache() {
@@ -64,8 +95,7 @@ export class EnviarDadosComponent {
   
 
   async verificarConexao(): Promise<boolean> {
-    //try {
-     
+   // try {
    //   await this.http.get('https://14f6-138-36-100-145.ngrok-free.app/api/pergunta/buscar/132', { observe: 'response' }).toPromise(); //add https://www.google.com
      return true; 
    // } catch (error) {
@@ -74,11 +104,12 @@ export class EnviarDadosComponent {
 
   }
 
+
 async enviarFormulario(dados: any[]) {
-  const apiUrl = 'https://14f6-138-36-100-145.ngrok-free.app/api/pergunta/salvar';
+  const apiUrl = 'https://2f22-168-181-142-116.ngrok-free.app/api/pergunta/salvar'; 
 
   try {
-    const resposta = await this.http.post(apiUrl, dados).toPromise();
+    const resposta = this.http.post(apiUrl, dados).toPromise();
     console.log('Resposta da API:', resposta);
   } catch (erro) {
     console.error('Erro ao enviar dados para a API:', erro);
@@ -86,17 +117,30 @@ async enviarFormulario(dados: any[]) {
 
 }
 
+
+enviarRespostas(perguntas: any[]): Observable<any> {
+  console.log(perguntas)
+  const apiUrl = 'https://2f22-168-181-142-116.ngrok-free.app/api/pergunta/salvar'; 
+  return this.http.post<any>(apiUrl, perguntas);
+}
+
+
+
+
 async enviarfotosEinformacoesAPI() {
+
+  
+
   try {
     const fotos = await this.indexedDbService.getFotosFromIndexedDB();
     const codigoInspecao = await this.indexedDbService.loadFormCodigoInspecao();
 
     for (const foto of fotos) {
-       
-      if (codigoInspecao == foto.inspecao){
-
-        this.enviarArquivo(foto.photoData,foto.descricao,foto.latitude,foto.longitude,foto.observacao,'AV',codigoInspecao,foto.data);
-      }
+    
+    //  if (codigoInspecao == foto.inspecao){
+      
+          this.enviarArquivo(foto.photoData,foto.descricao,foto.latitude,foto.longitude,foto.observacao,'AV',codigoInspecao,foto.data);
+   //   }
       
     }
   } catch (error) {
@@ -105,7 +149,10 @@ async enviarfotosEinformacoesAPI() {
   }
 }
 
-enviarArquivo(blob: Blob, descricao: string, latitude: string, longitude: string, observacao: string, tipo: string, vistoria: number, data: string) {
+ enviarArquivo(blob: Blob, descricao: string, latitude: string, longitude: string, observacao: string, tipo: string, vistoria: number, data: string) {
+  console.log('oi enviar 06');
+  
+  
   const formData = new FormData();
 
   // Cria um objeto de arquivo a partir do Blob
@@ -120,8 +167,10 @@ enviarArquivo(blob: Blob, descricao: string, latitude: string, longitude: string
   formData.append('vistoria', vistoria.toString());
   formData.append('data', data);
 
+  console.log('okvcefoda');
 
-  this.http.post('https://b377-138-36-100-145.ngrok-free.app/inspecoes/processar', formData)
+
+  this.http.post('https://76ed-168-181-142-116.ngrok-free.app/inspecoes/processar', formData) 
     .subscribe(
       (resposta) => {
         console.log('Resposta da API:', resposta);
@@ -175,13 +224,5 @@ async transformarFormulariosParaJSON() {
     return []; // ou algum valor padrão dependendo do seu caso
   }
 }
-
-
-
-// Função para obter os dados da tabela 'codigoInspecao' do IndexedDB
-async  getCodigoInspecaoFromIndexedDB() {
-  
-}
-
 
 }
